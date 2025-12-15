@@ -1,13 +1,21 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
 {
   public float speed ;
   public float RotSpeed;
+  public bool gameOver;
+  public GameObject gameOverObj;
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+        if(gameOver == true){
+            gameObject.GetComponent<SpriteRenderer>().enabled=false;
+            gameOverObj.SetActive(true);
+            return;
+        }
+        
         transform.Translate(Vector3.up * speed * Time.deltaTime );
         if(Keyboard.current.rightArrowKey.isPressed)
         {
@@ -19,4 +27,16 @@ public class playerMovement : MonoBehaviour
         }
         
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("enemy"))
+        {
+            gameOver=true;
+ 
+        }
+    }
+    public void restart(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    
 }

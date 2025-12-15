@@ -4,11 +4,17 @@ public class enemyScr : MonoBehaviour
 {
     public GameObject target;
     public float speed;
+    private playerMovement playerScr;
 
+    private void Start()
+    {
+       target = GameObject.FindGameObjectWithTag("player");
+       playerScr = target.GetComponent<playerMovement>();
+    }
     // Update is called once per frame
     void Update()
     {
-      
+       
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
         
     }
