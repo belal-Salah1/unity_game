@@ -8,6 +8,7 @@ public class playerMovement : MonoBehaviour
   public float RotSpeed;
   public bool gameOver;
   public GameObject gameOverObj;
+  public GameObject explosion;
     // Update is called once per frame
     void Update() {
         if(gameOver == true){
@@ -31,6 +32,7 @@ public class playerMovement : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("enemy"))
         {
+            Instantiate(explosion, transform.position, Quaternion.identity);
             gameOver=true;
  
         }
