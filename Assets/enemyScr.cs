@@ -24,7 +24,10 @@ public class enemyScr : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("bullet"))
         {
-            Instantiate(explosion, transform.position, Quaternion.identity);
+            if(explosion != null)
+            {
+                Instantiate(explosion, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
             Destroy(collision.gameObject);
         }
